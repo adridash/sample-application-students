@@ -10,7 +10,9 @@ script:
  - mvn clean verify
  - docker build -t adri/db-changelog ./sample-application-db-changelog-job
  - docker build -t adri/http-api ./sample-application-http-api-server
-
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+ - docker push adridash/repotest:sample-application-db-changelog-job
+ - docker push adridash/repotest:sample-application-http-api-server
 notifications:
  email:
    on_failure: never
