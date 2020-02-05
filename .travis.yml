@@ -1,2 +1,16 @@
-script: 
-    - mvn clean verify 
+cache:
+ directories:
+ - "$HOME/.m2/repository"
+ - "$HOME/.sonar/cache"
+
+services:
+ - docker
+
+script:
+ - mvn clean verify
+ - docker build -t adri/db-changelog $HOME/build/adridash/sample-application-students/sample-application-db-changelog-job
+ - docker build -t adri/http-api $HOME/build/adridash/sample-application-students/sample-application-http-api-server
+
+notifications:
+ email:
+   on_failure: never
