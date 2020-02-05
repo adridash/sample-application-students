@@ -1,6 +1,6 @@
 cache:
  directories:
- - "$HOME/.m2/repository"
+ - "$HOME/.m2"
  - "$HOME/.sonar/cache"
 
 services:
@@ -8,8 +8,9 @@ services:
 
 script:
  - mvn clean verify
- - docker build -t adri/db-changelog $HOME/build/adridash/sample-application-students/sample-application-db-changelog-job
- - docker build -t adri/http-api $HOME/build/adridash/sample-application-students/sample-application-http-api-server
+ - docker build -t adri/db-changelog /home/travis/build/adridash/sample-application-students/sample-application-db-changelog-job
+ - ls /home/travis/build/adridash/sample-application-students/sample-application-db-changelog-job/target/
+ - docker build -t adri/http-api /home/travis/build/adridash/sample-application-students/sample-application-http-api-server
 
 notifications:
  email:
