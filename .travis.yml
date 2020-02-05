@@ -1,1 +1,5 @@
 language : java
+
+deploy:
+    provider: script
+    script: "mvn clean verify" 
