@@ -8,13 +8,13 @@ services:
 
 script:
  - mvn clean verify
- - docker build -t adri/db-changelog:db1.0 ./sample-application-db-changelog-job
- - docker build -t adri/http-api:http1.0 ./sample-application-http-api-server
- - docker tag adri/db-changelog adridash/repotest:db1.0
- - docker tag adri/http-api adridash/repotest:http1.0
+ - docker build -t adri/db-changelog ./sample-application-db-changelog-job
+ - docker build -t adri/http-api ./sample-application-http-api-server
+ - docker tag adri/db-changelog $DOCKER_USERNAME/dbchangelog:db1.0
+ - docker tag adri/http-api $DOCKER_USERNAME/http:1.0
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
- - docker push adridash/repotest:db1.0
- - docker push adridash/repotest:http1.0
+ - docker push $DOCKER_USERNAME/dbchangelog
+ - docker push $DOCKER_USERNAME/http
 
 notifications:
  email:
