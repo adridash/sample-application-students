@@ -8,10 +8,11 @@ services:
 
 script:
  - mvn clean verify
- - ls
- - docker build -t adri/db-changelog /home/travis/build/adridash/sample-application-students/sample-application-db-changelog-job
- - ls /home/travis/build/adridash/sample-application-students/sample-application-db-changelog-job/target/
- - docker build -t adri/http-api /home/travis/build/adridash/sample-application-students/sample-application-http-api-server
+ - cd ./sample-application-db-changelog-job
+ - docker build -t adri/db-changelog .
+ - cd ..
+ - ls ./sample-application-db-changelog-job/target/
+ - docker build -t adri/http-api ./sample-application-http-api-server
 
 notifications:
  email:
