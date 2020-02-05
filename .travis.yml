@@ -8,6 +8,7 @@ services:
 
 script:
  - mvn clean verify
+ - ls
  - docker build -t adri/db-changelog /home/travis/build/adridash/sample-application-students/sample-application-db-changelog-job
  - ls /home/travis/build/adridash/sample-application-students/sample-application-db-changelog-job/target/
  - docker build -t adri/http-api /home/travis/build/adridash/sample-application-students/sample-application-http-api-server
@@ -15,4 +16,3 @@ script:
 notifications:
  email:
    on_failure: never
-   
