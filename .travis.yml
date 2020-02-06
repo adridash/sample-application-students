@@ -7,7 +7,8 @@ services:
  - docker
 
 script:
- - mvn clean verify
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+ - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=adridash_sample-application-students
  - docker build -t adri/db-changelog ./sample-application-db-changelog-job
  - docker build -t adri/http-api ./sample-application-http-api-server
  - docker tag adri/db-changelog $DOCKER_USERNAME/dbchangelog:db1.0
@@ -19,3 +20,11 @@ script:
 notifications:
  email:
    on_failure: never
+
+   travis encrypt 
+
+addons:
+ sonarcloud:
+  organization: "adridash"
+  token:
+    secure: "1f225287b7d1e928d9d9254122b2353f81298972" # encrypted value of your token
