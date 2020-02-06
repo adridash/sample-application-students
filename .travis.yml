@@ -3,6 +3,12 @@ cache:
  - "$HOME/.m2"
  - "$HOME/.sonar/cache"
 
+addons:
+  sonarcloud:
+    organization: "adridash"
+    token:
+      secure: "1f225287b7d1e928d9d9254122b2353f81298972" # encrypted value of your token
+
 services:
  - docker
 
@@ -23,8 +29,3 @@ notifications:
 
    travis encrypt 
 
-addons:
- sonarcloud:
-  organization: "adridash"
-  token:
-    secure: "1f225287b7d1e928d9d9254122b2353f81298972" # encrypted value of your token
