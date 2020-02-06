@@ -27,5 +27,3 @@ notifications:
  email:
    on_failure: never
 
-   travis encrypt 
-
